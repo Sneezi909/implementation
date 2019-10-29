@@ -87,10 +87,11 @@ def create_user(ctx):
 
     user = click.prompt('Please enter user name')
     password = click.prompt('Please enter password', hide_input=True, confirmation_prompt=True)
-
+    
     click.echo("Creating user into database [%s]" % ctx.obj['database'])
     try:
         DatabaseManager.create_user(user, password, ctx.obj['database']) #TODO: need revise
+        click.echo('Database Manager Created User')
         UserManager.create_user(user, password)
         click.echo('User created.')
     except Exception as e:

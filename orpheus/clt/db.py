@@ -196,9 +196,11 @@ class DatabaseManager():
 		# Create user in the database
 		# Using corresponding SQL or prostegres commands
         # Set one-time only connection to the database to create user
+        
         try:
             server_config = cls.load_config()
             conn_string = "host=" + server_config['host'] + " port=" + str(server_config['port']) + " dbname=" + db
+            # raise BadStateError(conn_string)            
             connect = psycopg2.connect(conn_string)
             cursor = connect.cursor()
             # passphrase = EncryptionTool.passphrase_hash(password)
